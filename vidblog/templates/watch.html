@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ video.title }} - vidblog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/watch.css' %}">
+    <script> 
+        function copyLink() {
+    const el = document.createElement('textarea');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    
+    alert("تم نسخ رابط الفيديو!");
+}
+    </script>
+</head>
+<body class="bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold me-auto" href="/">
+                <i class="bi bi-play-circle-fill text-danger"></i> Vidblog
+            </a>
+            
+            <form class="d-flex ms-auto" style="max-width: 400px;" method="GET" action="{% url 'index' %}">
+                <input class="form-control search-input" type="search" name="q" placeholder="ابحث...">
+                <button class="btn search-btn text-white px-3" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+            
+            <div class="d-flex align-items-center ms-3">
+                <button class="btn btn-outline-light rounded-circle border-0">
+                    <i class="bi bi-person-circle fs-4"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid py-4 px-lg-5">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="video-player-wrapper shadow-lg">
+                    <video controls poster="{{ video.smart_thumbnail }}" class="w-100 rounded-3">
+                        <source src="{{ video.link }}" type="video/mp4">
+                        Browser Error.
+                    </video>
+                </div>
+
+                <div class="video-details mt-4">
+                    <h2 class="video-title fw-bold">{{ video.title }}</h2>
+                    
+                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-3 border-bottom pb-3 border-secondary">
+                        <div class="video-stats text-muted">
+                            <span><i class="bi bi-eye"></i> {{ video.views }} watch</span>
+                            <span class="mx-3"><i class="bi bi-calendar3"></i> {{ video.date }}</span>
+                            <span class="badge bg-secondary opacity-75">{{ video.category.name }}</span>
+                        </div>
+
+                        <div class="action-buttons d-flex gap-2">
+                            <button class="btn action-btn">
+                                <i class="bi bi-hand-thumbs-up"></i> Like
+                            </button>
+                            <button class="btn action-btn" onclick="shareVideo()" >
+                                <i class="bi bi-share"></i> share
+                            </button>
+                            <button class="btn action-btn text-danger">
+                                <i class="bi bi-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="video-description mt-4 p-3 rounded-3" style="background: #1e1e1e;">
+                        <h6 class="fw-bold mb-2">description</h6>
+                        <p class="mb-0 text-secondary" style="white-space: pre-wrap;">{{ video.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+<div class="col-lg-4">
+    <h5 class="fw-bold mb-3 border-start border-danger border-4 ps-2">suggested videos:</h5>
+    <div class="recommended-list">
+        {% for rec_video in others %} <a href="{% url 'watch' rec_video.slug %}" class="text-decoration-none">
+            <div class="rec-card mb-3">
+                <div class="rec-thumb">
+                    {% if rec_video.thumbnail %}
+                    <img src="{{ rec_video.thumbnail.url }}" alt="{{ rec_video.title }}">
+                    {% endif %}
+                    <span class="badge bg-black position-absolute bottom-0 start-0 m-1">{{ rec_video.time }}</span>
+                </div>
+                <div class="rec-body ms-2">
+                    <h6 class="rec-title text-white mb-1">{{ rec_video.title }}</h6>
+                    <small class="text-muted d-block">{{ rec_video.views }} مشاهدة</small>
+                    <small class="text-muted">{{ rec_video.date }}</small>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+        <p class="text-muted">no recommended videos...</p>
+        {% endfor %} </div>
+
+
+
+    
+
+
+</div>

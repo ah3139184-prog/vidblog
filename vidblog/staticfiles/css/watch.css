@@ -1,0 +1,154 @@
+/* الألوان الأساسية */
+body {
+    background-color: #0f0f0f; /* لون يوتيوب الداكن */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* الهيدر */
+.navbar {
+    background-color: #0f0f0f !important;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.search-input {
+    background-color: #121212;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 0 40px 40px 0 !important;
+    padding-right: 15px;
+}
+
+.search-input:focus {
+    background-color: #1a1a1a;
+    border-color: #dc3545;
+    color: white;
+    box-shadow: none;
+}
+
+.search-btn {
+    background-color: #222;
+    border: 1px solid #333;
+    border-right: none;
+    border-radius: 40px 0 0 40px !important;
+}
+
+.search-btn:hover {
+    background-color: #333;
+}
+
+/* مشغل الفيديو */
+.video-player-wrapper {
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+video:focus {
+    outline: none;
+}
+
+/* تنسيق إحصائيات الفيديو (المشاهدات والتاريخ) */
+.video-stats {
+    color: #bbb !important; /* لون رمادي فاتح جداً واضح على الخلفية السوداء */
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.video-stats span {
+    color: #bbb !important; /* للتأكيد على العناصر الداخلية */
+}
+
+.video-stats i {
+    color: #dc3545; /* خلي الأيقونات باللون الأحمر عشان تدي شكل جمالي */
+    margin-left: 5px; /* مسافة بسيطة بين الأيقونة والنص */
+}
+
+/* تنسيق الوصف */
+.video-description h5 {
+    color: #fff; /* عنوان الوصف بالأبيض الصريح */
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.video-description p {
+    color: #ccc; /* نص الوصف برمادي فاتح مريح للعين */
+}
+
+/* الكاتيجوري (Category Badge) */
+.category-badge {
+    background-color: #333;
+    color: #eee !important;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+/* أزرار الإجراءات */
+.action-btn {
+    background: #272727;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    background: #3f3f3f;
+    color: white;
+}
+
+.action-btn:active { 
+    transform: scale(0.95);
+    color: red;
+}
+
+/* قائمة الفيديوهات المقترحة */
+.rec-card {
+    display: flex;
+    transition: 0.2s;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.rec-card:hover {
+    background: #272727;
+}
+
+.rec-thumb {
+    width: 160px;
+    height: 90px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.rec-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.rec-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rec-meta {
+    font-size: 0.8rem;
+}
+
+/* التوافق مع الشاشات الصغيرة */
+@media (max-width: 991px) {
+    .rec-thumb {
+        width: 120px;
+        height: 68px;
+    }
+}
